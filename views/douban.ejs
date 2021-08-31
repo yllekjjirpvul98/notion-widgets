@@ -8,84 +8,115 @@
 <body>
 <!--- Javascript imports -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="card m-0 p-5 d-flex align-items-center justify-content-center">
-    <div class="row">
-        <div class="container d-flex flex-wrap align-items-center justify-content-around left-container" style="flex-direction: column;">
-            <!-- Photo & Title -->
-            <h1 class="underline"><%= item.title %></h1>
 
-            <div class="row-sm-6 shadow container image mb-2">
-                <img referrerPolicy="no-referrer" src="<%= item.coverImg %>"/>
-            </div>
-           <div class="row-sm-6 container shadow">
-               <!-- Ratings -->
-                <ul class="list-group list-group-horizontal-sm w-100">
-                    <li class="list-group-item d-flex align-items-center justify-content-center"><span class="bold">豆瓣 <br/> 评分</span></li>
-                    <li class="list-group-item d-flex align-items-center justify-content-center rating">
-                        <h3><%= item.rating %></h3>
-                        <span class="badge rounded-pill">共<%= item.rating_no %>人评分</span>                    
-                    </li>
-                    </ul>                  
-           </div>
+<!-- Upper Container -->
+<div class="background container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-3 d-flex align-items-center justify-content-center">
+            <!-- Image -->
+                <div class="container-fluid d-flex align-items-center justify-content-center"> 
+                    <img class="shadow img-fluid" referrerPolicy="no-referrer" src="<%= item.coverImg %>"/>
+                </div>
         </div>
-        <div class="table-container p-2 d-flex flex-wrap align-items-center justify-content-center">
+        <div class="col-md-4 col-sm-3 d-flex align-items-center justify-content-center">
+            <!-- Title and Ratings -->
+            
+            <div class="container-fluid d-flex align-items-center justify-content-center flex-column">
+                <h1 class="underline"><%= item.title %></h1>
+                
+                <div class="container-fluid ratings">
+                    <!-- Ratings -->
+                        <ul class="list-group list-group-horizontal-sm">
+                            <li class="list-group-item d-flex align-items-center justify-content-center"><span class="bold" style="white-space: nowrap;">豆瓣 <br/> 评分</span></li>
+                            <li class="list-group-item d-flex align-items-center justify-content-center rating">
+                                <h3><%= item.rating %></h3>
+                                <span class="badge rounded-pill">共<%= item.rating_no %>人评分</span>                    
+                            </li>
+                        </ul>                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-6">
             <!-- Details -->
             <table class="table table-sm table-borderless">
                 <tbody>
                     <tr>
                         <th>副标题</th>
-                          <td><%= item.subTitle %></td>
+                        <td><%= item.subTitle %></td>
                     </tr>
                     <tr>
-                      <th>原文</th>
+                    <th>原文</th>
                         <td><%= item.originalTitle %></td>
                     </tr>
                     <tr>
-                      <th>作者</th>
+                    <th>作者</th>
                         <td><%= item.author %></td>
                     </tr>
                     <tr>
-                      <th>译者</th>
+                    <th>译者</th>
                         <td><%= item.translator %></td>
                     </tr>
-                  <tr>
-                      <th>页数</th>
-                     <td><%= item.length %></td>
+                <tr>
+                    <th>页数</th>
+                    <td><%= item.length %></td>
                     </tr>
                     <tr>
                         <th>出版社</th>
-                       <td><%= item.publisher %></td>
-                      </tr>
-                      <tr>
+                    <td><%= item.publisher %></td>
+                    </tr>
+                    <tr>
                         <th>出版日期</th>
-                       <td><%= item.publishedYear %></td>
-                      </tr>
-                      <tr>
+                    <td><%= item.publishedYear %></td>
+                    </tr>
+                    <tr>
                         <th>ISBN</th>
-                       <td><%= item.ISBN %></td>
-                      </tr>
+                    <td><%= item.ISBN %></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
-
+</div>  
 </body>
 
 <style>
+
+@include font-size(1rem);
 
 @font-face {
   font-family: fenYuanTi;
   src: url('../../static/maokenwangti.ttf');
 }
 
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+
+h1 {
+    font-size: 3vmax;
+}
+
+h3 {
+    font-size: 2vmax;
+}
+
+
+.image {
+    width: 100%;
+}
+
+img {
+    width: 50%;
+}
+
 body {
     font-family: fenYuanTi;
     margin: 0 auto;
+    font-size: calc(0.75em + 1vmin);
+    min-height: 100%;
 }
 
 .rating {
@@ -100,6 +131,7 @@ td, th {
     color: #f3f3f3;
 
 }
+
 
 .left-container {
     height: fit-content;
@@ -118,11 +150,14 @@ table {
 }
 
 .card {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     margin: 0 auto;
-    background-image: linear-gradient(120deg, #f6d365 0%, #777372 100%);
     color: #f3f3f3;
+}
+
+.background {
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
 
 .list-group-item {
@@ -134,10 +169,14 @@ table {
 }
 
 .shadow {
+    box-shadow:  rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.ratings {
     margin-right: auto;
     padding: 0;
     width: fit-content;
-    box-shadow:  rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;;
+    
 }
 
 .badge {
