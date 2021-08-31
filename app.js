@@ -9,16 +9,6 @@ const router = express.Router();
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
-
-
-if(process.env.NODE_ENV === 'production') {
-  app.use((req, res, next) => {
-    if (req.header('X-Forwarded-Proto') !== 'https')
-      res.redirect(`https://${req.header('host')}${req.url}`)
-    else
-      next()
-  })
-}
 app.use(cors())
 
 app.use('/', router);
