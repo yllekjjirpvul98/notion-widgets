@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const path = require('path');
 const axios = require('axios');
@@ -8,7 +9,21 @@ const router = express.Router();
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
+
+
+if(process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('X-Forwarded-Proto') !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`)
+    else
+      next()
+  })
+}
+app.use(cors())
+
 app.use('/', router);
+
+
 
 router.get('/douban-rating/:type/:subjectId', async (req, res) => {
 
@@ -113,15 +128,6 @@ router.get('/douban-rating/:type/:subjectId', async (req, res) => {
   })
   res.render('douban', {'item' : item})
 })
-
-if(process.env.NODE_ENV === 'production') {
-  app.use((req, res, next) => {
-    if (req.header('X-Forwarded-Proto') !== 'https')
-      res.redirect(`https://${req.header('host')}${req.url}`)
-    else
-      next()
-  })
-}
 
 app.use('/static', express.static(__dirname + '/public'));
 
