@@ -116,8 +116,8 @@ router.get('/douban-rating/:type/:subjectId', async (req, res) => {
 
 if(process.env.NODE_ENV === 'production') {
   app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https')
-      res.redirect(`https://${req.header('host')}${req.url}`)
+    if (req.header('X-Forwarded-Proto') !== 'https')
+      res.redirect(`https://${req.header('host')}/${req.header('path')}`)
     else
       next()
   })
