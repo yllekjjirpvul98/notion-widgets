@@ -114,6 +114,15 @@ router.get('/douban-rating/:type/:subjectId', async (req, res) => {
   res.render('douban', {'item' : item})
 })
 
+if(process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`)
+    else
+      next()
+  })
+}
+
 app.use('/static', express.static(__dirname + '/public'));
 
 app.listen(process.env.PORT || 3000);
