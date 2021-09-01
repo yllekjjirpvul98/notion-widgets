@@ -15,33 +15,23 @@
 <!-- Upper Container -->
 <div class="background container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-4 col-sm-3 d-flex align-items-center justify-content-center">
+        <div class="col-md-4 col-sm-6 d-inline-flex align-items-center justify-content-center m-0 p-0">
             <!-- Image -->
-                <div class="container-fluid d-flex align-items-center justify-content-center"> 
                     <img class="shadow img-fluid" referrerPolicy="no-referrer" src="<%= item.coverImg %>"/>
-                </div>
         </div>
-        <div class="col-md-4 col-sm-3 d-flex align-items-center justify-content-center">
+        <div class="col-md-4 col-sm-6 d-inline-flex align-items-center justify-content-center m-0 p-0 flex-column">
             <!-- Title and Ratings -->
-            
-            <div class="container-fluid d-flex align-items-center justify-content-center flex-column">
                 <h1 class="underline"><%= item.title %></h1>
-                
-                <div class="container-fluid ratings">
-                    <!-- Ratings -->
-                        <ul class="list-group list-group-horizontal-sm">
-                            <li class="list-group-item d-flex align-items-center justify-content-center"><span class="bold" style="white-space: nowrap;">豆瓣 <br/> 评分</span></li>
-                            <li class="list-group-item d-flex align-items-center justify-content-center rating">
-                                <h3><%= item.rating %></h3>
-                                <span class="badge rounded-pill">共<%= item.rating_no %>人评分</span>                    
-                            </li>
-                        </ul>                  
-                </div>
-            </div>
+                <!-- Ratings -->
+                    <div class="container rating-container d-inline-flex p-2 align-items-center justify-content-center flex-column" style="width: fit-content;">
+                        <span class="bold" style="white-space: nowrap;">豆瓣评分</span>
+                        <h3 style="width: fit-content;"><%= item.rating %></h3>
+                        <span class="badge rounded-pill">共<%= item.rating_no %>人评分</span>
+                    </div>              
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-8 col-sm-6">
+        <div class="col-md-8 col-sm-12 table-responsive p-2">
             <!-- Details -->
             <table class="table table-sm table-borderless">
                 <tbody>
@@ -100,12 +90,8 @@ h1 {
 }
 
 
-.image {
-    width: 100%;
-}
-
 img {
-    width: 50%;
+    width: 20vmin;
 }
 
 body {
@@ -113,6 +99,7 @@ body {
     margin: 0 auto;
     font-size: calc(0.75em + 1vmin);
     min-height: 100%;
+    color: #f3f3f3;
 }
 
 .rating {
@@ -156,7 +143,7 @@ table {
     background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
 
-.list-group-item {
+.rating-container {
     border-color: #f3f3f3;
     border-width: thin;
     border-style: dashed;
@@ -166,13 +153,6 @@ table {
 
 .shadow {
     box-shadow:  rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-.ratings {
-    margin-right: auto;
-    padding: 0;
-    width: fit-content;
-    
 }
 
 .badge {
